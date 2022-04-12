@@ -2,7 +2,16 @@
 Clone this repository on the server of interest.
 `cd` into it and run
 ```
+docker-compose pull
 docker-compose up -d
+```
+Check if the containers are running:
+```
+docker ps
+
+CONTAINER ID IMAGE                 ... CREATED STATUS PORTS          ...
+097f58433a2b hasura/graphql-engine ... 1m ago  Up 1m  8080->8080/tcp ...
+b0b1aac0508d postgres              ... 1m ago  Up 1m  5432/tcp       ...
 ```
 
  ## Import Hasura setup
