@@ -14,7 +14,38 @@ CONTAINER ID IMAGE                 ... CREATED STATUS PORTS          ...
 b0b1aac0508d postgres              ... 1m ago  Up 1m  5432/tcp       ...
 ```
 
- ## Import Hasura setup
+## Access the Hasura Console
+Clone this repository on a machine with access to a browser and a monitor.
+Add a file named `config.yaml` to the root of this repository:
+```
+version: 3
+endpoint: http://your-endpoint:1200
+metadata_directory: metadata
+actions:
+  kind: synchronous
+  handler_webhook_baseurl: http://localhost:3000
+```
+Replace `your-endpoint` with the url for your server machine, e.g. `http://something.eecs.umich.edu:1200`.
+Note that port 1200 is hard-coded in `docker-compose.yaml`. If there are issues with that port, you can change it 
+under `graphql-engine:`, under `ports:`.
+
+Now (from inside the root directory of this repository), run
+```
+hasura console
+```
+If hasura indicates that there is a new version available for the CLI, feel free to update. This command should open the 
+hasura console in your browser. While there is no data in your database, your schema should be loaded. In particular, you should
+see the following tables: 
+```
+chart
+parameter_choices
+run
+run_log
+sweep
+```
+under the "DATA".
+
+## Import Hasura setup
 This will use a Hasura migration. First
 you need to determine the ip-address of the server where the database is running.
 
