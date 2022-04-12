@@ -34,16 +34,7 @@ Now (from inside the root directory of this repository), run
 hasura console
 ```
 If hasura indicates that there is a new version available for the CLI, feel free to update. This command should open the 
-hasura console in your browser. While there is no data in your database, your schema should be loaded. In particular, you should
-see the following tables: 
-```
-chart
-parameter_choices
-run
-run_log
-sweep
-```
-under the "DATA".
+hasura console in your browser. Currently there is no data or metadata in your database so there is not much to see here yet.
 
 ## Import Hasura setup
 This will use a Hasura migration. First

@@ -2,6 +2,7 @@ table:
   name: sweep
   schema: public
 configuration:
+  comment: null
   custom_column_names:
     remaining_runs: remaining_runs
   custom_root_fields: {}
