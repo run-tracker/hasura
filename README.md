@@ -37,31 +37,31 @@ If hasura indicates that there is a new version available for the CLI, feel free
 hasura console in your browser. Currently there is no data or metadata in your database so there is not much to see here yet.
 
 ## Import Hasura setup
-This will use a Hasura migration. First
-you need to determine the ip-address of the server where the database is running.
-
-Next apply our metadata to the enpoint:
-```
-hasura metadata apply
-```
-Now we apply any saved migrations to the connected databases:
+First, we run the migrations which load the correct schema into our postgres database:
 ```
 hasura migrate apply --all-databases
 ```
-Finally we reload the metadata:
+To confirm that this worked, run `hasura console`, look on the `DATA` tab, and click on `public` on the left (represented with a small folder icon).
+This should open a page that show a handful of untracked tables, views, and functions.
+
+In order to set up Hasura to use these postgres entities, we apply our metadata to the endpoint:
 ```
-hasura metadata reload
+hasura metadata apply
 ```
-The port is `8080` by default, but you can double check this by looking in the
-`docker-compose.yml` file that you ran on the database server. This will add the appropriate tables and relations to your GraphQL endpoint. You can check this by running
+You should now see a list of tables under `public` (`DATA` tab):
 ```
-hasura console
+chart
+parameter_choices
+run
+run_blob
+run_log
+sweep
 ```
-On the DATA tab, you should see the appropriate Database(s) and table(s) in the
-left column. 
+You will also see a long list of GraphQL Queries under the "Explorer" when you click on the `API` tab.
 
 ## Backup data
-On the database server, run
+Even if you do not yet have data in your database, you will want to set up regular data backups.
+The command to dump the contents of your postres data base is:
 ```
 docker exec hasura_postgres_1 pg_dump -U postgres -d postgres > [output-file]
 ```
@@ -72,12 +72,25 @@ This command makes a few assumptions which are true by default:
  - Both your Postgres username and database name is `postgres` (true per the
    default `docker-compose.yml`)
 
-One way to perform regular backups is to run this command periodically using a `cron` job.
+One way to perform regular backups is to run this command periodically using a `cron` job. On your server (not on localhost),
+run 
+```
+crontab -e
+```
+Edit the file that comes up so that it looks like this:
+```
+  # m h  dom mon dow   command
+  0 *  *   *   *     /path/to/hasura/directory/backup.sh /path/to/backup
+```
+Replacing `/path/to/hasura/directory` and `/path/to/backup` with the appropriate file paths.
+Your `cron` file may have other jobs running on it, and that is ok.
+
+This will execute the `backup.sh` script every day and create a new file named `X.sql` where `X` is the 
+day of the month. As a result, your data will overwrite itself every month, but you will have access
+to the version of your database that existed on each of the days of the past month. 
 
 ## Restore data
-First follow the steps described in 
-[Set up a database on a server](#set-up-a-database-on-a-server).
-Next run
+Run
 ```
 docker exec -i hasura_postgres_1 psql -U postgres -d postgres < [backup-file]
 ```
