@@ -1,7 +1,8 @@
 ## Set up a database on a server
-Follow [these
+[These
 instructions](https://hasura.io/docs/latest/graphql/core/getting-started/docker-simple.html)
-on the server of interest (not on localhost).
+will walk you through setting up a Postgres database with a Hasura GraphQL API.
+Perform the steps on the server where you plan to host the database (not on localhost).
 
  ## Import Hasura setup
 This will use a Hasura migration. First
