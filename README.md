@@ -53,4 +53,3 @@ Finally run
 ```
 hasura metadata apply
 ```
-# hasura
