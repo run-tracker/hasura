@@ -15,7 +15,9 @@ b0b1aac0508d postgres              ... 1m ago  Up 1m  5432/tcp       ...
 ```
 
 ## Access the Hasura Console
-Clone this repository on a machine with access to a browser and a monitor.
+To access the Hasura Console, you will first need to install the Hasura CLI following [these](https://hasura.io/docs/latest/graphql/core/hasura-cli/install-hasura-cli/) instructions.
+
+Next, clone this repository on a machine with access to a browser and a monitor.
 Add a file named `config.yaml` to the root of this repository:
 ```
 version: 3
