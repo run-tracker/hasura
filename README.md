@@ -1,5 +1,7 @@
 ## Set up a database on a server
-Clone this repository on the server of interest.
+Make sure you have docker setup and ready to go. Follow [these instructions](https://docs.docker.com/engine/install/) if necessary.
+
+Next, clone this repository on the server of interest.
 `cd` into it and run
 ```
 docker-compose pull
