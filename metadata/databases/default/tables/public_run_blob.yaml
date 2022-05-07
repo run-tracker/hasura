@@ -1,13 +1,13 @@
 table:
-  name: run_blob
   schema: public
+  name: run_blob
 object_relationships:
-- name: run
-  using:
-    foreign_key_constraint_on: run_id
+  - name: run
+    using:
+      foreign_key_constraint_on: run_id
 computed_fields:
-- definition:
-    function:
-      name: bytea_to_text
-      schema: public
-  name: text
+  - name: text
+    definition:
+      function:
+        schema: public
+        name: bytea_to_text

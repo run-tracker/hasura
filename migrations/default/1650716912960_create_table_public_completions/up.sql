@@ -1,0 +1,1 @@
+CREATE TABLE "public"."completions" ("prompt" text NOT NULL, "completion" text NOT NULL, "temperature" numeric, "top_p" numeric, "logprob" numeric NOT NULL, "id" serial NOT NULL, PRIMARY KEY ("id") );

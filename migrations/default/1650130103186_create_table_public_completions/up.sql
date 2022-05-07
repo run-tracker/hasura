@@ -1,0 +1,1 @@
+CREATE TABLE "public"."completions" ("prompt" text NOT NULL, "completion" text NOT NULL, PRIMARY KEY ("prompt") , UNIQUE ("prompt"));COMMENT ON TABLE "public"."completions" IS E'Caches GPT-3 completions';

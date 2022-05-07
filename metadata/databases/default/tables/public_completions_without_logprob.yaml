@@ -1,0 +1,3 @@
+table:
+  schema: public
+  name: completions_without_logprob

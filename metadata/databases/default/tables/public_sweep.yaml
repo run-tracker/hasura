@@ -1,34 +1,34 @@
 table:
-  name: sweep
   schema: public
+  name: sweep
 configuration:
+  custom_root_fields: {}
   comment: null
   custom_column_names:
     remaining_runs: remaining_runs
-  custom_root_fields: {}
 array_relationships:
-- name: parameter_choices
-  using:
-    foreign_key_constraint_on:
-      column: sweep_id
-      table:
-        name: parameter_choices
-        schema: public
-- name: runs
-  using:
-    foreign_key_constraint_on:
-      column: sweep_id
-      table:
-        name: run
-        schema: public
+  - name: parameter_choices
+    using:
+      foreign_key_constraint_on:
+        column: sweep_id
+        table:
+          schema: public
+          name: parameter_choices
+  - name: runs
+    using:
+      foreign_key_constraint_on:
+        column: sweep_id
+        table:
+          schema: public
+          name: run
 computed_fields:
-- definition:
-    function:
-      name: has_logs
-      schema: public
-  name: has_logs
-- definition:
-    function:
-      name: sweep_metadata_path
-      schema: public
-  name: metadata_path
+  - name: has_logs
+    definition:
+      function:
+        schema: public
+        name: has_logs
+  - name: metadata_path
+    definition:
+      function:
+        schema: public
+        name: sweep_metadata_path

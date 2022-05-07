@@ -1,4 +1,6 @@
 - "!include public_chart.yaml"
+- "!include public_completions.yaml"
+- "!include public_completions_without_logprob.yaml"
 - "!include public_parameter_choices.yaml"
 - "!include public_run.yaml"
 - "!include public_run_blob.yaml"

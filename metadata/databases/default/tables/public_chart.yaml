@@ -1,7 +1,7 @@
 table:
-  name: chart
   schema: public
+  name: chart
 object_relationships:
-- name: run
-  using:
-    foreign_key_constraint_on: run_id
+  - name: run
+    using:
+      foreign_key_constraint_on: run_id
